@@ -22,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: "/node_modules/",
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
           options: {
@@ -61,7 +61,7 @@ module.exports = {
         test: /\.(s[ac]ss|css)$/,
         exclude: /\.module.(s(a|c)ss)$/,
         use: [
-         "style-loader",
+          "style-loader",
           "css-loader",
           {
             loader: "sass-loader",
@@ -72,7 +72,7 @@ module.exports = {
           "less-loader",
         ],
       },
-      
+
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
@@ -80,7 +80,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
@@ -97,7 +97,15 @@ module.exports = {
       cldr$: path.resolve(__dirname, "node_modules/cldrjs/dist/cldr.js"),
       cldr: path.resolve(__dirname, "node_modules/cldrjs/dist/cldr"),
     },
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".scss"],
+    extensions: [
+      ".webpack.js",
+      ".web.js",
+      ".tsx",
+      ".ts",
+      ".js",
+      ".jsx",
+      ".scss",
+    ],
   },
   plugins: [
     htmlPlugin,
